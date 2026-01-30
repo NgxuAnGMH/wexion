@@ -229,4 +229,5 @@ lerna-debug.log*
 
 # Reference Wiki
 Reference_Wiki/
+static/
 tmp/
