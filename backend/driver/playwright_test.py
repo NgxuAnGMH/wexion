@@ -7,13 +7,13 @@ import asyncio
 import os
 from pathlib import Path
 
-from playwright.async_api import async_playwright, TimeoutError as PlaywrightTimeoutError
-
+from playwright.async_api import TimeoutError as PlaywrightTimeoutError
+from playwright.async_api import async_playwright
 
 # 配置变量
 WX_LOGIN = "https://mp.weixin.qq.com/"
 WX_HOME = "https://mp.weixin.qq.com/cgi-bin/home"
-STATIC_DIR = Path(__file__).parent / "static"
+STATIC_DIR = Path(__file__).parent.parent / "data" / "static"
 QRCODE_PATH = STATIC_DIR / "wx_qrcode.png"
 
 # 二维码最小有效大小（字节），小于此值说明获取失败
@@ -95,7 +95,9 @@ async def validate_qrcode():
 
         file_size = QRCODE_PATH.stat().st_size
         if file_size < QRCODE_MIN_SIZE:
-            print_error(f"二维码文件大小异常: {file_size} 字节（最小要求: {QRCODE_MIN_SIZE} 字节）")
+            print_error(
+                f"二维码文件大小异常: {file_size} 字节（最小要求: {QRCODE_MIN_SIZE} 字节）"
+            )
             return False
 
         print_info(f"二维码验证通过，文件大小: {file_size} 字节")
@@ -133,8 +135,7 @@ async def main():
         # 创建上下文
         print_info("正在创建浏览器上下文...")
         context = await browser.new_context(
-            viewport={'width': 1280, 'height': 720},
-            locale='zh-CN'
+            viewport={"width": 1280, "height": 720}, locale="zh-CN"
         )
 
         # 创建页面
@@ -214,7 +215,9 @@ async def main():
     finally:
         # 4. 清理所有资源
         print_info("正在清理浏览器资源...")
-        await cleanup_resources(page=page, context=context, browser=browser, driver=driver)
+        await cleanup_resources(
+            page=page, context=context, browser=browser, driver=driver
+        )
 
 
 if __name__ == "__main__":

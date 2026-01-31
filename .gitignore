@@ -231,3 +231,11 @@ lerna-debug.log*
 Reference_Wiki/
 static/
 tmp/
+
+
+docs/
+
+key.lic
+wx.lic
+
+pnpm*
