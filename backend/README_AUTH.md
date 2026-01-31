@@ -6,7 +6,7 @@
 
 ```bash
 cd backend
-uv run python app/init_db.py
+PYTHONPATH=. uv run python -c "from app.init_db import init_db; init_db()"
 ```
 
 ### 2. 启动后端

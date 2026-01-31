@@ -1,3 +1,10 @@
+import sys
+from pathlib import Path
+
+# 添加 backend 目录到 Python 模块搜索路径
+backend_dir = Path(__file__).parent
+sys.path.insert(0, str(backend_dir))
+
 from app.database import engine, Base, SessionLocal
 from app.models import User
 from app.config import settings
