@@ -28,14 +28,36 @@ cd backend
 
 ## API 测试
 
-```bash
-# 启动服务
-cd backend && uv run uvicorn app.main:app --reload
+### 方式一：使用自动化测试脚本
 
+```bash
+# 启动后端服务（终端 1）
+cd backend
+uv run uvicorn app.main:app --reload --port 8000
+
+# 运行 API 测试脚本（终端 2）
+cd backend
+./test_api.sh
+```
+
+测试脚本会自动执行以下测试：
+- 检查后端服务状态
+- 测试登录 API
+- 测试获取用户信息 API
+- 测试无效 token 处理
+- 测试错误密码处理
+
+### 方式二：手动测试
+
+```bash
 # 测试登录
 curl -X POST http://localhost:8000/api/auth/login \
   -H "Content-Type: application/json" \
   -d '{"username": "admin", "password": "admin123"}'
+
+# 测试获取用户信息（替换 YOUR_TOKEN）
+curl -X GET http://localhost:8000/api/users/me \
+  -H "Authorization: Bearer YOUR_TOKEN"
 ```
 
 ## 前后端集成测试步骤
