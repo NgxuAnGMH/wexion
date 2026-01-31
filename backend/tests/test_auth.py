@@ -1,7 +1,4 @@
-import pytest
-from datetime import timedelta
 from app.auth import create_access_token, verify_token
-from app.config import settings
 
 def test_create_token():
     """测试创建 token"""

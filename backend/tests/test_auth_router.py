@@ -1,22 +1,7 @@
-import pytest
 from fastapi.testclient import TestClient
 from app.main import app
-from app.database import SessionLocal
 
 client = TestClient(app)
-
-@pytest.fixture(scope="function")
-def db_session():
-    """测试数据库会话"""
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
-        # 清理: 删除所有测试数据
-        from app.models import User
-        db.query(User).delete()
-        db.commit()
 
 def test_login_success(db_session):
     """测试登录成功"""
