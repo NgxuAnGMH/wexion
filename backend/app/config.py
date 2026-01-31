@@ -1,4 +1,3 @@
-from pydantic_settings import BaseSettings
 from pydantic import BaseModel
 from typing import Literal
 import yaml
