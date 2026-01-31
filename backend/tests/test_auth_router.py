@@ -80,7 +80,7 @@ def test_get_me_success(db_session):
 
     token = create_access_token({"sub": "testuser"})
 
-    response = client.get("/api/auth/me", headers={
+    response = client.get("/api/users/me", headers={
         "Authorization": f"Bearer {token}"
     })
 
@@ -91,13 +91,13 @@ def test_get_me_success(db_session):
 
 def test_get_me_no_token():
     """测试未提供 token 访问受保护路由"""
-    response = client.get("/api/auth/me")
+    response = client.get("/api/users/me")
 
     assert response.status_code == 401  # HTTPBearer 返回 401
 
 def test_get_me_invalid_token():
     """测试无效 token 访问受保护路由"""
-    response = client.get("/api/auth/me", headers={
+    response = client.get("/api/users/me", headers={
         "Authorization": "Bearer invalid.token.here"
     })
 
