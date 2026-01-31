@@ -232,8 +232,6 @@ Reference_Wiki/
 static/
 tmp/
 
-docs/
-
 # Git worktrees
 .worktrees/
 
