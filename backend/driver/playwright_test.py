@@ -4,7 +4,6 @@
 """
 
 import asyncio
-import os
 from pathlib import Path
 
 from playwright.async_api import TimeoutError as PlaywrightTimeoutError

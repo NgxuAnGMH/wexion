@@ -1,0 +1,12 @@
+# ⚠️  警告: 此文件包含敏感信息，请勿提交到版本控制系统
+admin:
+  username: "admin"
+  password: "admin123"
+
+jwt:
+  secret_key: "your-secret-key-change-in-production"
+  algorithm: "HS256"
+  expire_minutes: 1440  # 24 小时
+
+database:
+  url: "sqlite:///./wexion.db"
